@@ -1,0 +1,111 @@
+<%- include('layout/header') %>
+<style>
+  /* Custom styles specific to this page go here */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #c9f8f8;
+  }
+  .card {
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(215, 41, 41, 0.1);
+  }
+  .card-header {
+    background-color: #007bff;
+    color: #875454;
+  }
+  .card-body {
+    padding: 20px;
+  }
+  .form-group label {
+    font-weight: bold;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  .name {
+    color: #e2ff04;
+  }
+</style>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header bg-success">
+          <h2 class="text-center text-white">
+            Edit User <b class="name"><%= user.name %></b>
+          </h2>
+        </div>
+        <div class="card-body">
+          <form
+            action="/update/<%= user._id %>"
+            method="post"
+            id="add-form"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                value="<%= user.name %>"
+                placeholder="Enter Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                value="<%= user.email %>"
+                placeholder="Enter Email"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone"
+                name="phone"
+                value="<%= user.phone %>"
+                placeholder="Enter Phone"
+              />
+            </div>
+            <!-- This is a form group for uploading an image -->
+            <div class="form-group">
+              <label for="image">Image:</label>
+              <!-- Input field for selecting a file -->
+              <input
+                name="image"
+                type="file"
+                class="form-control-file"
+                id="image"
+              />
+              <img
+                src="/<%= user.image %>"
+                class="img-thumbnail mt-1"
+                width="100"
+              />
+            </div>
+            <input type="hidden" name="old_image" value="<%= user.image %>" />
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Update User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('layout/footer') %>

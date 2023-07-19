@@ -1,0 +1,95 @@
+<%- include('layout/header') %>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #c9f8f8;
+  }
+  .table {
+    background-color: #f8f9fa;
+  }
+
+  .table th {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .table img {
+    max-width: 50px;
+    border-radius: 50%;
+  }
+
+  .action-links a {
+    color: #155724;
+    margin: 0 5px;
+  }
+
+  .action-links a:hover {
+    text-decoration: none;
+    color: #0d4813;
+  }
+
+  .action-links .text-danger:hover {
+    color: #721c24;
+  }
+</style>
+<div class="container">
+  <div class="row my-4">
+    <div class="col-lg-12">
+      <% if (message) { %>
+  <div class="alert alert-dismissible fade show alert-<%= message.type %>" role="alert">
+    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="close"></button>
+    <strong><%= message.message %></strong>
+  </div>
+<% } %>
+        <div class="table-responsive">
+          <% if (users != '') { %>
+           <table class="table table-striped text-center">
+            <thead>
+              <tr class="table-dark">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Image</th> 
+                <th>Date de creation</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach((row , index) => { %>
+               <tr class="align-middle">
+                <td><%= index %> </td>
+                <td><%= row.name %> </td>
+                <td><%= row.email %></td>
+                <td><%= row.phone %></td>
+                <td>
+                  <img src="<%= row.image %>" alt="Profile Image of <%= row.name %>">
+                </td>
+          <td><%= new Date(row.created).toLocaleString() %></td>                <td class="action-links">
+                  <a href="/edit/<%= row._id %>" class="text-success"
+                    ><i class="fas fa-edit fa-lg mx-1"></i>Edit</a
+                  >
+                  <a href="/delete/<%= row._id %>" class="text-danger"
+                    ><i class="fas fa-trash fa-lg mx-1"></i>Delete</a
+                  >
+                </td>
+              </tr>
+              <% }) %>
+              <!-- Sample data (replace this with your actual data) -->
+
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+          <% } else { %>
+            <h1 class="text-centre text-secondary mt-5">No Users Found in the database</h1>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('layout/footer') %>
+</div>
