@@ -17,7 +17,7 @@ CRUD_App is a simple web application that allows users to perform CRUD operation
 
 ## Demo
 
-![1](https://github.com/simohammed-taher/crud_node-js_express_mongodb/assets/100471051/be37e733-9731-4176-a58e-2995c59999c8)
+![1](https://github.com/simohammed-taher/crud_node-js_express_mongodb/assets/100471051/d742c1a0-a8b3-4aeb-a575-633e38e68ef9)
 
 ## Features
 
